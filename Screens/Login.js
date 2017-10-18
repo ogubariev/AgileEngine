@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
+import { View, Text, StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity, AsyncStorage, Alert, Keyboard } from 'react-native';
 import IOSIcon from "react-native-vector-icons/Ionicons";
 
-const USERNAME_KEY = 'username_key';
+export const USERNAME_KEY = 'username_key';
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -15,18 +15,14 @@ export default class LoginScreen extends Component {
   }
 
   redirect(routeName){
-    // this.props.navigator.push({
-    //   name: routeName
-    // });
+    this.props.navigation.navigate("Main");
   }
 
   storeAuthInfo(responseData){
     AsyncStorage.setItem(USERNAME_KEY, responseData, (err)=> {
       if(err){
-        console.log("an error");
         throw err;
       }
-      console.log("success");
     }).catch((err)=> {
       console.log("error is: " + err);
     });
@@ -34,12 +30,10 @@ export default class LoginScreen extends Component {
 
   async onLoginPressed() {
     var {username, password} = this.state;
-    console.log('Username: ' + username + 'Password: ' + password);
-
     try {
       if (username.length != 0 && password.length != 0) {
         this.storeAuthInfo(this.state.username);
-        this.redirect('home');
+        this.redirect('Main');
       } else {
         throw 'Username and password can\'t be empty.'
       }
@@ -49,7 +43,6 @@ export default class LoginScreen extends Component {
         error,
         { cancelable: true }
       )
-      console.log("error " + error);
     }
   }
 

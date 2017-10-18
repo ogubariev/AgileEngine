@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, AsyncStorage } from 'react-native';
 
 export default class LogoutScreen extends Component {
+  async onLogoutPressed() {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate("Login");
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.goodByeTitle}>
           Good Bye
         </Text>
-        <TouchableOpacity style={styles.goodByeButton}>
+        <TouchableOpacity style={styles.goodByeButton} onPress={this.onLogoutPressed.bind(this)}>
           <Text style={styles.goodByeButtonText}>
             Logout
           </Text>
@@ -22,7 +27,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingBottom: 200,
     },
     goodByeTitle: {
       textAlign: 'center',

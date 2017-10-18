@@ -80,11 +80,6 @@ export default class StackOverflowScreen extends Component {
         </Text>
       </View>
     );
-
-    renderSeparator = () => (
-      <View style={styles.divider}>
-      </View>
-    );
 }
 
 const styles = StyleSheet.create({
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#7f8c8d'
+      backgroundColor: '#8c8c8c'
     },
     loadingTitle: {
       color: '#fff',
@@ -112,9 +107,4 @@ const styles = StyleSheet.create({
         color: 'black',
         flex: 1,
     },
-    divider: {
-      backgroundColor: '#bdc3c7',
-      marginHorizontal: 10,
-      height: 1,
-    }
 });
